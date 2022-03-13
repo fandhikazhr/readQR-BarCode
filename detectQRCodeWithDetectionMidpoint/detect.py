@@ -34,3 +34,23 @@ while True:
         # cv2.circle(img, (cx,cy), 10, (0,0,255), -1)
         cv2.putText(img,myData,(pts2[0],pts2[1]),cv2.FONT_HERSHEY_SIMPLEX,
                     0.9,(80,255,0),3)
+   
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    white = cv2.inRange(hsv, lower_white, upper_white)
+    cnts1 = cv2.findContours(white, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    countours1 = imutils.grab_contours(cnts1)
+    
+    for whiteCountour in countours1:
+        area = cv2.contourArea(whiteCountour)
+        if(area > 5000):
+            M = cv2.moments(whiteCountour)
+            cx = int(M["m10"] / M["m00"])
+            cy = int(M["m01"] / M["m00"])
+            print(M)
+            cv2.circle(img, (cx, cy), 7, (0, 0, 255), -1)
+    cv2.imshow('white',white)
+    cv2.imshow('Output', img)
+    cv2.waitKey(1)
+
+cap.release()
+cv2.destroyAllWindows()
