@@ -27,3 +27,31 @@ while True:
     white = cv2.inRange(hsv, lower_white, upper_white)
     cnts1 = cv2.findContours(white, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     countours1 = imutils.grab_contours(cnts1)
+
+    for whiteCountour in countours1:
+        area = cv2.contourArea(whiteCountour)
+        if(area > 5000):
+            M = cv2.moments(whiteCountour)
+            cx = int(M["m10"] / M["m00"])
+            cy = int(M["m01"] / M["m00"])
+            print(M)
+            cv2.circle(img, (cx, cy), 7, (0, 0, 255), -1)
+
+    black = cv2.inRange(img, upper_black, lower_black)
+    countours, hierarchy = cv2.findContours(black, 1, cv2.CHAIN_APPROX_NONE)
+    if len(countours) > 0:
+        c = max(countours, key=cv2.contourArea)
+        M = cv2.moments(c)
+        if M["m00"] != 0:
+            cx = int(M["m10"] / M["m00"])
+            cy = int(M["m01"] / M["m00"])
+        cv2.circle(img, (cx, cy), 7, (255, 255, 255), -1)
+    cv2.drawContours(img, countours, -1, (0,255,0), 2)
+
+    cv2.imshow('black',black)
+    cv2.imshow('white',white)
+    cv2.imshow('Output', img)
+    cv2.waitKey(1)
+
+cap.release()
+cv2.destroyAllWindows()
