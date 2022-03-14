@@ -47,3 +47,11 @@ while True:
             cy = int(M["m01"] / M["m00"])
         cv2.circle(img, (cx, cy), 7, (255, 255, 255), -1)
     cv2.drawContours(img, countours, -1, (0,255,0), 2)
+
+    cv2.imshow('black',black)
+    cv2.imshow('white',white)
+    cv2.imshow('Output', img)
+    cv2.waitKey(1)
+
+cap.release()
+cv2.destroyAllWindows()
