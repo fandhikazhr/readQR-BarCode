@@ -13,3 +13,4 @@ Learning about python script to reading QR Code and Barcode (●'◡'●)
 
 - Read QR Code & Detection Midpoint of QR Code
 
+![Screenshot (338)](https://user-images.githubusercontent.com/99522867/158105386-6b97c1c4-bb79-422e-84f0-7ae74c6ee2c6.png)
