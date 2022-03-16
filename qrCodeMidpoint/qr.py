@@ -71,3 +71,11 @@ while (1):
             pts2 = barcode.rect
             cv2.putText(img,myData,(pts2[0],pts2[1]),cv2.FONT_HERSHEY_SIMPLEX,
                         0.9,(80,255,0),3)
+
+        cv2.imshow('QR Analyze', img)
+        cv2.imshow("frame", frame)
+        cv2.imshow("mask", mask)
+        cv2.waitKey(1)
+
+cap.release()
+cv2.destroyAllWindows() 
