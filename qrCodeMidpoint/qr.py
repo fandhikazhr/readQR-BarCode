@@ -39,3 +39,7 @@ while (1):
         lower_white = np.array([40,0,220], np.uint8)
         upper_white = np.array([179, 255, 255], np.uint8)
         white= cv2.inRange(hsv, lower_white, upper_white)
+
+    mask = cv2.inRange(hsv, lower_white, upper_white)
+    cnts = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    cnts = imutils.grab_contours(cnts)
